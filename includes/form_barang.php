@@ -24,8 +24,6 @@ function field_err($err, $k) { return isset($err[$k]) ? '<small class="err">' . 
       <select id="kondisi" name="kondisi">
       <?php foreach ($kon as $k): ?><option value="<?= $k ?>" <?= $data['kondisi']===$k?'selected':'' ?>><?= t($k) ?></option><?php endforeach; ?>
       </select><?= field_err($err,'kondisi') ?></div>
-    <div class="full"><label for="lokasi"><?= t('lokasi') ?></label>
-      <input type="text" id="lokasi" name="lokasi" maxlength="100" value="<?= e($data['lokasi']) ?>"><?= field_err($err,'lokasi') ?></div>
   </div>
   <div class="actions">
     <button type="submit" class="btn"><?= t('simpan') ?></button>

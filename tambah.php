@@ -3,7 +3,7 @@ require_once 'includes/auth.php';
 wajib_login();
 require_once 'config/koneksi.php';
 
-$data = ['kode_barang'=>'','nama_barang'=>'','kategori'=>'','jumlah'=>'','harga'=>'','kondisi'=>'baik','lokasi'=>''];
+$data = ['kode_barang'=>'','nama_barang'=>'','kategori'=>'','jumlah'=>'','harga'=>'','kondisi'=>'baik'];
 $err = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         [$data, $err] = validasi_barang($_POST, $koneksi);
         if (!$err) {   
-            $st = $koneksi->prepare('INSERT INTO barang (kode_barang,nama_barang,kategori,jumlah,harga,kondisi,lokasi) VALUES (?,?,?,?,?,?,?)');
-            $st->bind_param('sssidss', $data['kode_barang'], $data['nama_barang'], $data['kategori'],
-                            $data['jumlah'], $data['harga'], $data['kondisi'], $data['lokasi']);
+            $st = $koneksi->prepare('INSERT INTO barang (kode_barang,nama_barang,kategori,jumlah,harga,kondisi) VALUES (?,?,?,?,?,?)');
+            $st->bind_param('sssids', $data['kode_barang'], $data['nama_barang'], $data['kategori'],
+                $data['jumlah'], $data['harga'], $data['kondisi']);
             if ($st->execute()) {
                 flash_set('success', 'sukses_tambah');
                 header('Location: index.php'); exit;

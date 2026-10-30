@@ -40,10 +40,8 @@ function validasi_barang(array $in, mysqli $db, int $id = 0) {
         'jumlah'      => trim($in['jumlah'] ?? ''),
         'harga'       => trim($in['harga'] ?? ''),
         'kondisi'     => trim($in['kondisi'] ?? ''),
-        'lokasi'      => trim($in['lokasi'] ?? ''),
     ];
     $data['nama_barang'] = strip_tags($data['nama_barang']);
-    $data['lokasi']      = strip_tags($data['lokasi']);
 
     if ($data['kode_barang'] === '' || !preg_match('/^[A-Z0-9\-]{1,20}$/', $data['kode_barang'])) {
         $err['kode_barang'] = 'err_kode';
@@ -70,7 +68,6 @@ function validasi_barang(array $in, mysqli $db, int $id = 0) {
     } else { $data['harga'] = (float)$data['harga']; }
 
     if (!in_array($data['kondisi'], ['baik', 'rusak ringan', 'rusak berat'], true)) $err['kondisi'] = 'err_kondisi';
-    if ($data['lokasi'] === '' || panjang_teks($data['lokasi']) > 100) $err['lokasi'] = 'err_lokasi';
 
     return [$data, $err];
 }

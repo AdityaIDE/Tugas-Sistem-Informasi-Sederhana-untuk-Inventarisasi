@@ -46,11 +46,11 @@ require 'includes/header.php';
     <thead><tr>
       <th><?= t('no') ?></th><th><?= t('kode') ?></th><th><?= t('nama') ?></th><th><?= t('kategori') ?></th>
       <th class="num"><?= t('jumlah') ?></th><th class="num"><?= t('harga') ?></th><th><?= t('kondisi') ?></th>
-      <th><?= t('lokasi') ?></th><th><?= t('aksi') ?></th>
+      </th><th><?= t('aksi') ?></th>
     </tr></thead>
     <tbody>
     <?php if (!$rows): ?>
-      <tr><td colspan="9" class="empty"><?= t('kosong') ?></td></tr>
+      <tr><td colspan="8" class="empty"><?= t('kosong') ?></td></tr>
     <?php else: $no = 1; foreach ($rows as $r): ?>
       <tr>
         <td><?= $no++ ?></td>
@@ -60,7 +60,6 @@ require 'includes/header.php';
         <td class="num"><?= (int)$r['jumlah'] ?></td>
         <td class="num"><?= number_format($r['harga'], 0, ',', '.') ?></td>
         <td><span class="badge b-<?= str_replace(' ', '-', e($r['kondisi'])) ?>"><?= t($r['kondisi']) ?></span></td>
-        <td><?= e($r['lokasi']) ?></td>
         <td class="aksi">
           <a class="btn btn-sm btn-outline" href="ubah.php?id=<?= (int)$r['id'] ?>"><?= t('edit') ?></a>
           <form method="post" action="hapus.php" onsubmit="return confirm('<?= addslashes(html_entity_decode(t('konfirmasi_hapus'))) ?>')">

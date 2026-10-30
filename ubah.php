@@ -10,13 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = (int)($_POST['id'] ?? 0);
     if (!csrf_valid($_POST['csrf'] ?? '')) {
         $err['_'] = 'err_csrf';
-        $data = $_POST + ['kode_barang'=>'','nama_barang'=>'','kategori'=>'','jumlah'=>'','harga'=>'','kondisi'=>'baik','lokasi'=>''];
+        $data = $_POST + ['kode_barang'=>'','nama_barang'=>'','kategori'=>'','jumlah'=>'','harga'=>'','kondisi'=>'baik'];
     } else {
         [$data, $err] = validasi_barang($_POST, $koneksi, $id);
-        if (!$err) {   )
-            $st = $koneksi->prepare('UPDATE barang SET kode_barang=?, nama_barang=?, kategori=?, jumlah=?, harga=?, kondisi=?, lokasi=? WHERE id=?');
-            $st->bind_param('sssidssi', $data['kode_barang'], $data['nama_barang'], $data['kategori'],
-                            $data['jumlah'], $data['harga'], $data['kondisi'], $data['lokasi'], $id);
+        if (!$err) {   
+            $st = $koneksi->prepare('UPDATE barang SET kode_barang=?, nama_barang=?, kategori=?, jumlah=?, harga=?, kondisi=? WHERE id=?');
+            $st->bind_param('sssidsi', $data['kode_barang'], $data['nama_barang'], $data['kategori'],
+                $data['jumlah'], $data['harga'], $data['kondisi'], $id);
             if ($st->execute()) {
                 flash_set('success', 'sukses_ubah');
                 header('Location: index.php'); exit;
