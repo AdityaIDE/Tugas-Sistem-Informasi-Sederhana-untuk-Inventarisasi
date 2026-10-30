@@ -1,4 +1,4 @@
-# Sistem Informasi Inventaris Barang (PHP murni + MySQL/MariaDB)
+# Sistem Informasi Inventaris Barang 
 
 ## Instalasi
 1. Salin folder yang sudah diextract ini ke `htdocs` (XAMPP) atau web root yang kalian gunakan
